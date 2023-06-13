@@ -225,7 +225,7 @@
     }
     .productos img{
         width: 50%;
-        height: 150px;
+        background-size: cover;
         border-radius: 25px 25px 0 0;
     }
     .productos h3{
