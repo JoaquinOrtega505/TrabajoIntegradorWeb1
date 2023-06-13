@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Página de Datos</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datos</title>
 </head>
 <body>
-  <h1>Datos del formulario recibidos:</h1>
-  
-  <p>Nombre: <span id="nombre"></span></p>
-  <p>Email: <span id="email"></span></p>
-  <p>Comentarios: <span id="comentarios"></span></p>
+  <h1>Datos</h1>
 
   <script>
-    // Obtener los datos almacenados en el almacenamiento local
-    var nombre = localStorage.getItem("nombre");
-    var email = localStorage.getItem("email");
-    var comentarios = localStorage.getItem("comentarios");
+    const urlParams = new URLSearchParams(window.location.search);
+    const nombre = urlParams.get("nombre");
+    const email = urlParams.get("email");
+    const comentarios = urlParams.get("comentarios");
 
-    // Mostrar los datos en la página
-    document.getElementById("nombre").textContent = nombre;
-    document.getElementById("email").textContent = email;
-    document.getElementById("comentarios").textContent = comentarios;
+    const resultadoDiv = document.querySelector("body");
+    resultadoDiv.innerHTML += `
+      <p>Nombre: ${nombre}</p>
+      <p>Email: ${email}</p>
+      <p>Comentarios: ${comentarios}</p>
+    `;
   </script>
 </body>
 </html>

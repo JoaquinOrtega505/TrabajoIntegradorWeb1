@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,11 +7,9 @@
   <title>Meraki Sushi en casa/Contacto</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
   <header class="header">
     <img class="bg" src="Imagenes/bg.svg" alt="">
-
     <div class="menu container">
       <a href="a" class="logo"></a>
       <nav class="navbar">
@@ -25,9 +22,9 @@
       </nav>
     </div>
   </header>
-
+  
   <div class="form-container">
-    <form id="formulario" onsubmit="return validarFormulario()">
+    <form id="formulario" action="datos.html" method="GET">
       <div class="form">
         <h1>Contacto</h1>
         <label for="nombre">Nombre y Apellido:</label>
@@ -46,68 +43,12 @@
         <textarea id="comentarios" name="comentarios"></textarea>
         <div id="error-comentarios" class="error-message"></div>
       </div>
-
-      <button type="submit" id="enviar">Enviar</button>
+      <input type="hidden" name="enctype" value="application/x-www-form-urlencoded">
+      <button type="submit" id="enviar" name="enviar">Enviar</button>
     </form>
   </div>
 
   <div class="resultado"></div>
-
-  <script>
-    let form = document.getElementById("formulario");
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      if (validarFormulario()) {
-        const nombre = form.nombre.value.trim();
-        const email = form.email.value.trim();
-        const comentarios = form.comentarios.value.trim();
-
-        // Guardar los datos en el almacenamiento local
-        localStorage.setItem("nombre", nombre);
-        localStorage.setItem("email", email);
-        localStorage.setItem("comentarios", comentarios);
-
-        // Redireccionar a la página de datos
-        window.location.href = "datos.html";
-      }
-    });
-
-    function validarFormulario() {
-      const nombre = form.nombre.value.trim();
-      const email = form.email.value.trim();
-      const comentarios = form.comentarios.value.trim();
-      let errores = 0;
-
-      if (nombre === "") {
-        document.getElementById("error-nombre").textContent = "Por favor, ingresa tu nombre y apellido";
-        errores++;
-      } else {
-        document.getElementById("error-nombre").textContent = "";
-      }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (email === "") {
-        document.getElementById("error-email").textContent = "Por favor, ingresa tu correo electrónico";
-        errores++;
-      } else if (!emailRegex.test(email)) {
-        document.getElementById("error-email").textContent = "Por favor, ingresa un correo electrónico válido";
-        errores++;
-      } else {
-        document.getElementById("error-email").textContent = "";
-      }
-
-      if (comentarios === "") {
-        document.getElementById("error-comentarios").textContent = "Por favor, ingresa tus comentarios";
-        errores++;
-      } else {
-        document.getElementById("error-comentarios").textContent = "";
-      }
-
-      return errores === 0;
-    }
-  </script>
 
   <section class="info container">
     <div class="info-1">
@@ -142,5 +83,4 @@
     </div>
   </footer>
 </body>
-
 </html>
