@@ -7,20 +7,32 @@
   <title>Datos</title>
 </head>
 <body>
-  <h1>Datos</h1>
+  <h1>Datos enviados</h1>
 
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const nombre = urlParams.get("nombre");
-    const email = urlParams.get("email");
-    const comentarios = urlParams.get("comentarios");
+    // Obtener los datos enviados por el formulario
+    const params = new URLSearchParams(window.location.search);
+    const nombre = params.get("nombre");
+    const email = params.get("email");
+    const comentarios = params.get("comentarios");
 
-    const resultadoDiv = document.querySelector("body");
-    resultadoDiv.innerHTML += `
-      <p>Nombre: ${nombre}</p>
-      <p>Email: ${email}</p>
-      <p>Comentarios: ${comentarios}</p>
-    `;
+    // Mostrar los datos en la página
+    const datosContainer = document.createElement("div");
+
+    const nombreElement = document.createElement("p");
+    nombreElement.textContent = "Nombre: " + nombre;
+
+    const emailElement = document.createElement("p");
+    emailElement.textContent = "Correo electrónico: " + email;
+
+    const comentariosElement = document.createElement("p");
+    comentariosElement.textContent = "Comentarios: " + comentarios;
+
+    datosContainer.appendChild(nombreElement);
+    datosContainer.appendChild(emailElement);
+    datosContainer.appendChild(comentariosElement);
+
+    document.body.appendChild(datosContainer);
   </script>
 </body>
 </html>
