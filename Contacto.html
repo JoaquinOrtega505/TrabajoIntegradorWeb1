@@ -7,9 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meraki Sushi en casa/Contacto</title>
   <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
   <header class="header">
@@ -23,145 +21,111 @@
           <li><a href="Productos.html">Productos</a></li>
           <li><a href="Carrousel1.html">Imágenes</a></li>
           <li><a href="Contacto.html">Contacto</a></li>
-
-
         </ul>
       </nav>
     </div>
-
-
-    <div class="form-container">
-      <form id="formulario" onsubmit="return validarFormulario()">
-        <div class="form">
-          <h1>Contacto</h1>
-          <label for="nombre">Nombre y Apellido:</label>
-          <input type="text" id="nombre" name="nombre">
-          <div id="error-nombre" class="error-message"></div>
-        </div>
-
-        <div class="form">
-          <label for="email">Correo electrónico:</label>
-          <input type="email" id="email" name="email">
-          <div id="error-email" class="error-message"></div>
-        </div>
-
-        <div class="form">
-          <label for="comentarios">Comentarios:</label>
-          <textarea id="comentarios" name="comentarios"></textarea>
-          <div id="error-comentarios" class="error-message"></div>
-
-
-          <button type="submit" id="enviar">Enviar</button>
-      </form>
-    </div>
-    <div class="resultado">
-
-    </div>
-
   </header>
 
+  <div class="form-container">
+    <form id="formulario" onsubmit="return validarFormulario()">
+      <div class="form">
+        <h1>Contacto</h1>
+        <label for="nombre">Nombre y Apellido:</label>
+        <input type="text" id="nombre" name="nombre">
+        <div id="error-nombre" class="error-message"></div>
+      </div>
 
+      <div class="form">
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email">
+        <div id="error-email" class="error-message"></div>
+      </div>
 
+      <div class="form">
+        <label for="comentarios">Comentarios:</label>
+        <textarea id="comentarios" name="comentarios"></textarea>
+        <div id="error-comentarios" class="error-message"></div>
+      </div>
 
-<script>
+      <button type="submit" id="enviar">Enviar</button>
+    </form>
+  </div>
+
+  <div class="resultado"></div>
+
+  <script>
+    let form = document.getElementById("formulario");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      if (validarFormulario()) {
+        const nombre = form.nombre.value.trim();
+        const email = form.email.value.trim();
+        const comentarios = form.comentarios.value.trim();
+
+        // Guardar los datos en el almacenamiento local
+        localStorage.setItem("nombre", nombre);
+        localStorage.setItem("email", email);
+        localStorage.setItem("comentarios", comentarios);
+
+        // Redireccionar a la página de datos
+        window.location.href = "datos.html";
+      }
+    });
+
     function validarFormulario() {
-      var nombre = document.getElementById('nombre').value.trim();
-      var email = document.getElementById('email').value.trim();
-      var comentarios = document.getElementById('comentarios').value.trim();
-      var errores = 0;
+      const nombre = form.nombre.value.trim();
+      const email = form.email.value.trim();
+      const comentarios = form.comentarios.value.trim();
+      let errores = 0;
 
-
-      if (nombre === '') {
-        document.getElementById('error-nombre').textContent = 'Por favor, ingresa tu nombre y apellido';
+      if (nombre === "") {
+        document.getElementById("error-nombre").textContent = "Por favor, ingresa tu nombre y apellido";
         errores++;
       } else {
-        document.getElementById('error-nombre').textContent = '';
+        document.getElementById("error-nombre").textContent = "";
       }
 
-
-      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (email === '') {
-        document.getElementById('error-email').textContent = 'Por favor, ingresa tu correo electrónico';
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (email === "") {
+        document.getElementById("error-email").textContent = "Por favor, ingresa tu correo electrónico";
         errores++;
       } else if (!emailRegex.test(email)) {
-        document.getElementById('error-email').textContent = 'Por favor, ingresa un correo electrónico válido';
+        document.getElementById("error-email").textContent = "Por favor, ingresa un correo electrónico válido";
         errores++;
       } else {
-        document.getElementById('error-email').textContent = '';
+        document.getElementById("error-email").textContent = "";
       }
 
-      if (comentarios === '') {
-        document.getElementById('error-comentarios').textContent = 'Por favor, ingresa tus comentarios';
+      if (comentarios === "") {
+        document.getElementById("error-comentarios").textContent = "Por favor, ingresa tus comentarios";
         errores++;
       } else {
-        document.getElementById('error-comentarios').textContent = '';
+        document.getElementById("error-comentarios").textContent = "";
       }
 
-
-
-
-
-      if (errores === 0) {
-        var datos = {
-          "Nombre y Apellido": nombre,
-          "Correo electrónico": email,
-          "Comentarios": comentarios
-        };
-
-        var mensaje = 'Datos ingresados:\n\n';
-        for (var key in datos) {
-          mensaje += key + ': ' + datos[key] + '\n';
-        }
-
-       // alert(mensaje);
-
-        return true;
-      } else {
-        return false;
-      }
+      return errores === 0;
     }
-
-    let form = document.getElementById("formulario"); 
-
-    
-    form.addEventListener("submit", (e)=> {
-      e.preventDefault()
-     
-      cuerpo= `
-        Nombre ingresado: ${form.nombre.value} <br> Email: ${form.email.value} 
-        <br> Email: ${form.comentarios.value} 
-      `
-
-      resultado = document.querySelector(".resultado")
-      resultado.innerHTML = cuerpo
-      form.nombre.value =""
-      form.email.value =""
-      form.comentarios.value =""
-    })
-
-    </script>
-
-
+  </script>
 
   <section class="info container">
-
     <div class="info-1">
-      <img src="imagenes/time.svg" alt=""><!--horarios-->
+      <img src="Imagenes/time.svg" alt=""><!--horarios-->
       <a href="Imagenes/time.svg"></a>
       <h3>Horario</h3>
-      <p>Viernes y Sabados</p>
+      <p>Viernes y Sábados</p>
     </div>
     <div class="info-1">
-      <img src="Imagenes/" alt=""> <!--Ubicacion-->
-      <h3>Ubicacion</h3>
-      <p>Merlo SL</p>
+      <img src="Imagenes/ubicacion.svg" alt=""> <!--Ubicación-->
+      <h3>Ubicación</h3>
+      <p>Merlo, San Luis</p>
     </div>
     <div class="info-1">
-      <img src="Imagenes/phone.svg" alt=""> <!--telefono-->
-      <h3>telefono</h3>
+      <img src="Imagenes/phone.svg" alt=""> <!--teléfono-->
+      <h3>Teléfono</h3>
       <p>2664....</p>
     </div>
-
   </section>
 
   <footer class="footer container">
@@ -176,11 +140,7 @@
         </div>
       </div>
     </div>
-
-
-
-
-
+  </footer>
 </body>
 
 </html>
