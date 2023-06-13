@@ -1,0 +1,102 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+    
+.header-img{
+    width: 100%;
+}
+.header-img img{
+    width: 650px;
+}
+
+.header-info{
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+}
+.header.txt{
+    width: 50px;
+    padding-right: 35px;
+}
+
+.header.txt h1{
+    font-size: 55px;
+    line-height: 70px;
+    font-weight: 600;
+    color: #303030;
+    margin-bottom: 25px;
+    text-transform: capitalize;
+}
+.header.txt p{
+    font-size: 16px;
+    color: #545454;
+    margin-bottom: 35px;
+}
+.bg{
+    position: absolute;
+    width: 700;
+    z-index: -1;
+    right: 0;
+}
+
+.menu .navbar ul li a {
+    font-size: 18px;
+    padding: 20px;
+    color: #303030;
+    display: block;
+    font-weight: 600;
+}
+
+.menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.menu .navbar ul li{
+    position: relative;
+    float: left;
+}
+
+.carrusel {
+    width: 700px;
+    height: 700px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+    .carrusel img {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    }
+
+    .boton-anterior,
+    .boton-siguiente {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 8px 16px;
+    cursor: pointer;
+    z-index: 1;
+    }
+
+    .boton-anterior {
+    left: 10px;
+    }
+
+    .boton-siguiente {
+    right: 10px;
+    }

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meraki Sushi en casa/Contacto</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+     
+<body>
+    <header class="header">
+        <img class="bg" src="Imagenes/bg.svg" alt="">
+            
+        <div class="menu container">
+            <a href="a" class="logo"></a>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="Principal.html">Inicio</a></li> 
+                    <li><a href="Productos.html">Productos</a></li>
+                    <li><a href="Carrousel1.html">Imágenes</a></li>
+                    <li><a href="Contacto.html">Contacto</a></li>
+                   
+
+                </ul>
+            </nav>
+        </div>
+
+        
+        <div class="form-container">
+  <form id="formulario" onsubmit="return validarFormulario()">
+    <div class="form">
+    <h1>Contacto</h1>
+      <label for="nombre">Nombre y Apellido:</label>
+      <input type="text" id="nombre" name="nombre">
+      <div id="error-nombre" class="error-message"></div>
+    </div>
+
+    <div class="form">
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email">
+      <div id="error-email" class="error-message"></div>
+    </div>
+
+    <div class="form">
+      <label for="comentarios">Comentarios:</label>
+      <textarea id="comentarios" name="comentarios"></textarea>
+      <div id="error-comentarios" class="error-message"></div>
+    
+
+    <button type="submit">Enviar</button>
+  </form></div>
+
+    </header>
+
+ 
+    
+
+    
+
+  <script>
+    function validarFormulario() {
+      var nombre = document.getElementById('nombre').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var comentarios = document.getElementById('comentarios').value.trim();
+      var errores = 0;
+
+     
+      if (nombre === '') {
+        document.getElementById('error-nombre').textContent = 'Por favor, ingresa tu nombre y apellido';
+        errores++;
+      } else {
+        document.getElementById('error-nombre').textContent = '';
+      }
+
+      
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (email === '') {
+        document.getElementById('error-email').textContent = 'Por favor, ingresa tu correo electrónico';
+        errores++;
+      } else if (!emailRegex.test(email)) {
+        document.getElementById('error-email').textContent = 'Por favor, ingresa un correo electrónico válido';
+        errores++;
+      } else {
+        document.getElementById('error-email').textContent = '';
+      }
+
+      if (comentarios === '') {
+        document.getElementById('error-comentarios').textContent = 'Por favor, ingresa tus comentarios';
+        errores++;
+      } else {
+        document.getElementById('error-comentarios').textContent = '';
+      }
+
+      
+      if (errores === 0) {
+        var datos = {
+          "Nombre y Apellido": nombre,
+          "Correo electrónico": email,
+          "Comentarios": comentarios
+        };
+
+        var mensaje = 'Datos ingresados:\n\n';
+        for (var key in datos) {
+          mensaje += key + ': ' + datos[key] + '\n';
+        }
+
+        alert(mensaje);
+       
+        return true;
+      } else {
+        return false;
+      }
+    }
+  </script>   
+    
+    
+
+    <section class="info container">
+
+        <div class="info-1">
+            <img src="imagenes/time.svg" alt=""><!--horarios--> 
+            <a href="file:///C:/Users/Joaco/Desktop/ULP/WEB%201/TrabajoIntegradorWeb1/Imagenes/time.svg"></a>
+            <h3>Horario</h3>
+            <p>Viernes y Sabados</p>
+        </div>
+        <div class="info-1">
+            <img src="imagenes/gps.svg" alt=""> <!--Ubicacion-->
+            <h3>Ubicacion</h3>
+            <p>Merlo SL</p>
+        </div>
+        <div class="info-1">
+            <img src="imagenes/phone.svg" alt=""> <!--telefono-->
+            <h3>telefono</h3>
+            <p>2664....</p>
+        </div>
+
+    </section>
+
+    <footer class="footer container">
+        <div class="footer-links">
+            <div class="link">
+                <h3>MERAKI</h3>
+                <div class="Redes">
+                    <img src="Imagenes/s1.svg" alt="">
+                    <img src="Imagenes/s2.svg" alt="">
+                    <img src="Imagenes/s3.svg" alt="">
+                    <img src="Imagenes/s4.svg" alt="">
+                </div>
+            </div>
+        </div>
+    
+    
+    
+    
+    
+</body>
+</html>
