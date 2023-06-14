@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meraki Sushi en casa/Contacto</title>
+  <title>Formulario de Contacto</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,41 +24,131 @@
   </header>
   
   <div class="form-container">
-    <form id="formulario" action="datos.html" method="GET">
+    <form id="formulario">
       <div class="form">
         <h1>Contacto</h1>
         <label for="nombre">Nombre y Apellido:</label>
-        <input type="text" id="nombre" name="nombre">
+        <input type="text" id="nombre" name="nombre" required>
         <div id="error-nombre" class="error-message"></div>
       </div>
 
       <div class="form">
         <label for="email">Correo electrónico:</label>
-        <input type="email" id="email" name="email">
+        <input type="email" id="email" name="email" required>
         <div id="error-email" class="error-message"></div>
       </div>
 
       <div class="form">
         <label for="comentarios">Comentarios:</label>
-        <textarea id="comentarios" name="comentarios"></textarea>
+        <textarea id="comentarios" name="comentarios" required></textarea>
         <div id="error-comentarios" class="error-message"></div>
       </div>
-      <input type="hidden" name="enctype" value="application/x-www-form-urlencoded">
+
       <button type="submit" id="enviar" name="enviar">Enviar</button>
     </form>
   </div>
 
   <div class="resultado"></div>
 
+  <script>
+    let form = document.getElementById("formulario");
+    let resultadoContainer = document.querySelector(".resultado");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault(); // Prevenir el envío automático del formulario
+
+      if (validarFormulario()) {
+        const nombre = form.nombre.value.trim();
+        const email = form.email.value.trim();
+        const comentarios = form.comentarios.value.trim();
+
+        // Crear elementos para mostrar los datos ingresados
+        const datosContainer = document.createElement("div");
+        datosContainer.classList.add("datos-container");
+
+        const nombreElement = document.createElement("p");
+        nombreElement.textContent = "Nombre: " + nombre;
+        datosContainer.appendChild(nombreElement);
+
+        const emailElement = document.createElement("p");
+        emailElement.textContent = "Email: " + email;
+        datosContainer.appendChild(emailElement);
+
+        const comentariosElement = document.createElement("p");
+        comentariosElement.textContent = "Comentarios: " + comentarios;
+        datosContainer.appendChild(comentariosElement);
+
+        // Insertar los datos en la página
+        resultadoContainer.innerHTML = ""; // Limpiar el contenido anterior
+        resultadoContainer.appendChild(datosContainer);
+
+        // Limpiar los campos del formulario después de enviarlo
+        form.reset();
+      }
+    });
+
+    function validarFormulario() {
+      const nombre = form.nombre.value.trim();
+      const email = form.email.value.trim();
+      const comentarios = form.comentarios.value.trim();
+
+      // Limpiar los mensajes de error previos
+      limpiarMensajesError();
+
+      let valido = true;
+
+      if (nombre === "") {
+        mostrarMensajeError("error-nombre", "Por favor, ingresa tu nombre");
+        valido = false;
+      }
+
+      if (email === "") {
+        mostrarMensajeError("error-email", "Por favor, ingresa tu correo electrónico");
+        valido = false;
+      } else if (!esEmailValido(email)) {
+        mostrarMensajeError("error-email", "Por favor, ingresa un correo electrónico válido");
+        valido = false;
+      }
+
+      if (comentarios === "") {
+        mostrarMensajeError("error-comentarios", "Por favor, ingresa tus comentarios");
+        valido = false;
+      } else if (comentarios.length > 200) {
+        mostrarMensajeError("error-comentarios", "Los comentarios deben tener máximo 200 caracteres");
+        valido = false;
+      }
+
+      return valido;
+    }
+
+    function mostrarMensajeError(idElemento, mensaje) {
+      const elemento = document.getElementById(idElemento);
+      elemento.textContent = mensaje;
+      elemento.style.display = "block";
+    }
+
+    function limpiarMensajesError() {
+      const mensajesError = document.querySelectorAll(".error-message");
+      mensajesError.forEach((elemento) => {
+        elemento.textContent = "";
+        elemento.style.display = "none";
+      });
+    }
+
+    function esEmailValido(email) {
+      const patronEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return patronEmail.test(email);
+    }
+  </script>
+
   <section class="info container">
     <div class="info-1">
       <img src="Imagenes/time.svg" alt=""><!--horarios-->
-      <a href="Imagenes/time.svg"></a>
       <h3>Horario</h3>
       <p>Viernes y Sábados</p>
     </div>
     <div class="info-1">
-      <img src="Imagenes/ubicacion.svg" alt=""> <!--Ubicación-->
+      <img src="Imagenes/gps.svg" alt=""> <!--Ubicación-->
       <h3>Ubicación</h3>
       <p>Merlo, San Luis</p>
     </div>
